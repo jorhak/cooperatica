@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<web-app version="4.0" xmlns="http://xmlns.jcp.org/xml/ns/javaee" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee http://xmlns.jcp.org/xml/ns/javaee/web-app_4_0.xsd">
+    <servlet>
+        <servlet-name>Index</servlet-name>
+        <servlet-class>com.pierluigi.Index</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>Api</servlet-name>
+        <servlet-class>com.pierluigi.Api</servlet-class>
+    </servlet>
+    
+    <servlet-mapping>
+        <servlet-name>Index</servlet-name>
+        <url-pattern>/index</url-pattern>
+        <url-pattern>/socio</url-pattern>
+        <url-pattern>/socio/find</url-pattern>
+        <url-pattern>/socio/delete</url-pattern>
+        <url-pattern>/socio/findAll</url-pattern>
+        <url-pattern>/consumo</url-pattern>
+        <url-pattern>/consumo/find</url-pattern>
+        <url-pattern>/consumo/delete</url-pattern>
+        <url-pattern>/consumo/findAll</url-pattern>
+        <url-pattern>/factura</url-pattern>
+        <url-pattern>/factura/find</url-pattern>
+        <url-pattern>/factura/delete</url-pattern>
+        <url-pattern>/factura/findAll</url-pattern>
+    </servlet-mapping>
+    
+    
+    <servlet-mapping>
+        <servlet-name>Api</servlet-name>
+        <url-pattern>/api</url-pattern>
+
+        <url-pattern>/api/socio</url-pattern>
+        <url-pattern>/api/socio/find</url-pattern>
+        <url-pattern>/api/socio/findAll</url-pattern>
+        <url-pattern>/api/socio/delete</url-pattern>
+        <url-pattern>/api/socio/update</url-pattern>
+        
+        <url-pattern>/api/consumo</url-pattern>
+        <url-pattern>/api/consumo/find</url-pattern>
+        <url-pattern>/api/consumo/findAll</url-pattern>
+        <url-pattern>/api/consumo/delete</url-pattern>
+        <url-pattern>/api/consumo/update</url-pattern>
+        <url-pattern>/api/consumo/comboSocio</url-pattern>
+        
+        <url-pattern>/api/factura</url-pattern>
+        <url-pattern>/api/factura/find</url-pattern>
+        <url-pattern>/api/factura/findAll</url-pattern>
+        <url-pattern>/api/factura/delete</url-pattern>
+        <url-pattern>/api/factura/update</url-pattern>
+        <url-pattern>/api/factura/comboX</url-pattern>
+
+    </servlet-mapping>
+    
+    
+    <session-config>
+        <session-timeout>
+      50
+    </session-timeout>
+    </session-config>
+</web-app>
