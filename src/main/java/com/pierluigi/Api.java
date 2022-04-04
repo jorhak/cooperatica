@@ -117,6 +117,9 @@ public class Api extends HttpServlet {
                 case "/api/consumo/findAll":
                     consumo.apiFindAll(req, resp);
                     return;
+                case "/api/consumo/findCodSocio":
+                    consumo.apiFindCodSocio(req, resp);
+                    return;
                 case "/api/consumo/comboSocio":
                     consumo.apiComboSocio(req, resp);
                     return;

@@ -54,6 +54,17 @@ public class CConsumo {
         req.setAttribute("modelo", modelo.find("id", id));
         vista.apiShowModelo(req, res);
     }
+    
+    public void apiFindCodSocio(HttpServletRequest req, HttpServletResponse res) {
+        String json = Middleware.getJson(req);
+        JsonElement elementObject = JsonParser.parseString(json);
+        JsonObject requestJson = elementObject.getAsJsonObject();
+        
+        String cod_socio;
+        cod_socio = requestJson.get("cod_socio").getAsString();
+        req.setAttribute("combo", modelo.findCodSocio("cod_socio", cod_socio));
+        vista.apiShowCombo(req, res);
+    }
 
     public void apiDelete(HttpServletRequest req, HttpServletResponse res) {
         String json = Middleware.getJson(req);

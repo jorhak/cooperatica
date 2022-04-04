@@ -40,6 +40,7 @@
         <url-pattern>/api/consumo</url-pattern>
         <url-pattern>/api/consumo/find</url-pattern>
         <url-pattern>/api/consumo/findAll</url-pattern>
+        <url-pattern>/api/consumo/findCodSocio</url-pattern>
         <url-pattern>/api/consumo/delete</url-pattern>
         <url-pattern>/api/consumo/update</url-pattern>
         <url-pattern>/api/consumo/comboSocio</url-pattern>

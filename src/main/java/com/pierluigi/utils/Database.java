@@ -140,7 +140,7 @@ public class Database {
     return data;
   }
 
-  private String[] columnName(ResultSet resultSet) {
+  public String[] columnName(ResultSet resultSet) {
     String columns[] = null;
     try {
       ResultSetMetaData metaData = resultSet.getMetaData();

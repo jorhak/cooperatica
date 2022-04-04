@@ -1,15 +1,22 @@
 package com.pierluigi.api.consumo;
 
 import com.pierluigi.utils.Database;
-import com.pierluigi.utils.IModelo;
 import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.text.SimpleDateFormat;
+import java.time.Instant;
 import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
+import java.util.Date;
+import java.util.HashMap;
 import java.util.LinkedHashMap;
+import java.util.LinkedList;
 import java.util.List;
 import java.util.Map;
 
-public class MConsumo implements IModelo{
+public class MConsumo {
+
     private int id;
     private String Finicio;
     private String Ffin;
@@ -33,7 +40,6 @@ public class MConsumo implements IModelo{
         this.cod_socio = cod_socio;
     }
 
-    @Override
     public void setData(Map<String, String> request) {
         if (request.getOrDefault("id", "0").equals("0")) {
             Map<String, String> anterior = (Map<String, String>) finAnterior(
@@ -54,7 +60,6 @@ public class MConsumo implements IModelo{
 
     }
 
-    @Override
     public Map<String, String> save() {
         boolean proccessed = false;
         String sqlInsert = "insert into consumo (Finicio, Ffin, Minicio, Mfin, estado, cod_socio) " +
@@ -91,13 +96,11 @@ public class MConsumo implements IModelo{
         return proccessed ? find("id", id) : null;
     }
 
-    @Override
     public boolean delete(String id) {
         String sql = "delete from consumo where id=?;";
         return Database.getInstance().delete(sql, id);
     }
 
-    @Override
     public Map<String, String> find(String columnName, Object columnValue) {
         String sql = "select * from consumo where %s='%s' limit 1;";
         sql = String.format(sql, columnName, columnValue);
@@ -107,13 +110,46 @@ public class MConsumo implements IModelo{
         return !resultado.isEmpty() ? resultado.get(0) : null;
     }
 
-    @Override
     public List<Map<String, String>> findAll() {
         String sql = "select * from consumo order by 1;";
         return Database.getInstance().executeSQLResultList(sql);
     }
 
-    @Override
+    public List<Map<String, String>> findCodSocio(String columnName,
+            Object columnValue) {
+
+        String sql = "select * from consumo where %s='%s' and estado='Impaga';";
+        sql = String.format(sql, columnName, columnValue);
+
+        List<Map<String, String>> data = new LinkedList<>();
+        try (PreparedStatement consulta = Database.getInstance().getConnection().prepareStatement(sql);
+                ResultSet resultado = consulta.executeQuery();) {
+            while (resultado.next()) {
+                Map<String, String> map = new HashMap<>();
+                for (int index = 0; index < 1; index++) {
+                    
+                    SimpleDateFormat sdf1 = new SimpleDateFormat("yyyy-MM-dd");
+                    SimpleDateFormat sdf2 = new SimpleDateFormat("MMMM yyyy");
+                    String periodo = resultado.getString(index + 3);
+                    String fecha = sdf2.format(sdf1.parse(periodo));
+                    int cantidad = resultado.getInt(index+5) - resultado.getInt(index+4);
+                    
+                    map.put("id", resultado.getString(index + 1));
+                    //map.put("periodo", resultado.getString(index + 3));
+                    map.put("periodo", fecha);
+                    map.put("cantidad", String.valueOf(cantidad));
+                    map.put("estado", resultado.getString(index + 6));
+                    map.put("cod_socio", resultado.getString(index + 7));
+                }
+                data.add(map);
+            }
+        } catch (Exception e) {
+            Database.getInstance().closeConnection();
+            Database.getInstance().connect();
+        }
+        return data;
+    }
+
     public Map<String, String> comboBox() {
         Map<String, String> socio = new LinkedHashMap<>();
 
@@ -146,7 +182,7 @@ public class MConsumo implements IModelo{
                 executeSQLResultList(sql);
         return !resultado.isEmpty() ? resultado.get(0) : null;
     }
-    
+
     public Map<String, String> EndInsert() {
         String sql = "select max(id)as id from consumo;";
 
