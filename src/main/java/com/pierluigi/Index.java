@@ -5,7 +5,7 @@
 package com.pierluigi;
 
 import com.pierluigi.consumo.CConsumo;
-import com.pierluigi.factura.CFactura;
+import com.pierluigi.api.factura.CFactura;
 import com.pierluigi.socio.CSocio;
 import java.io.IOException;
 import java.io.PrintWriter;

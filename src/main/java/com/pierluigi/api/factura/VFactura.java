@@ -1,4 +1,4 @@
-package com.pierluigi.factura;
+package com.pierluigi.api.factura;
 
 import com.google.gson.Gson;
 import com.pierluigi.utils.Html;
