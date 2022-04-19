@@ -35,8 +35,8 @@ public class CFactura {
 
     Map<String, String> requestModel = new LinkedHashMap<>();
     requestModel.put("id", request.get("id").getAsString());
-    requestModel.put("codigo", request.get("codigo").getAsString());
-    requestModel.put("descripcion", request.get("descripcion").getAsString());
+    requestModel.put("fecha", request.get("fecha").getAsString());
+    requestModel.put("importe", request.get("importe").getAsString());
 
     return requestModel;
   }
@@ -56,9 +56,11 @@ public class CFactura {
 
       Map<String, String> item = new HashMap<>();
       item.put("id", itemJson.get("id").getAsString());
-      item.put("dia", itemJson.get("dia").getAsString());
-      item.put("hora_inicio", itemJson.get("hora_inicio").getAsString());
-      item.put("hora_final", itemJson.get("hora_final").getAsString());
+      item.put("cantidad", itemJson.get("cantidad").getAsString());
+      item.put("importe", itemJson.get("importe").getAsString());
+      item.put("periodo", itemJson.get("periodo").getAsString());
+      item.put("id_factura", itemJson.get("id_factura").getAsString());
+      item.put("id_consumo", itemJson.get("id_consmo").getAsString());
       requestItems.add(item);
     }
     return requestItems;

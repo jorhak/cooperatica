@@ -133,11 +133,13 @@ public class MConsumo {
                     String periodo = resultado.getString(index + 3);
                     String fecha = sdf2.format(sdf1.parse(periodo));
                     int cantidad = resultado.getInt(index+5) - resultado.getInt(index+4);
+                    int importe = (int) (cantidad*1.93);
                     
                     map.put("id", resultado.getString(index + 1));
                     //map.put("periodo", resultado.getString(index + 3));
-                    map.put("periodo", fecha);
                     map.put("cantidad", String.valueOf(cantidad));
+                    map.put("importe", String.valueOf(importe));
+                    map.put("periodo", fecha);
                     map.put("estado", resultado.getString(index + 6));
                     map.put("cod_socio", resultado.getString(index + 7));
                 }

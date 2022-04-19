@@ -69,6 +69,11 @@ public class Api extends HttpServlet {
                 consumo.apiSave(req, resp);
                 return;
             }
+            case "/api/consumo/findCodSocio": {
+                CConsumo consumo = new CConsumo();
+                consumo.apiFindCodSocio(req, resp);
+                return;
+            }
         }
     }
 
@@ -76,7 +81,6 @@ public class Api extends HttpServlet {
     protected void doGet(HttpServletRequest req, HttpServletResponse resp)
             throws ServletException, IOException {
 
-        
         //resp.sendRedirect(req.getContextPath()+"/template/apiSocio/socio.jsp");
         String action = req.getServletPath();
 
@@ -88,7 +92,6 @@ public class Api extends HttpServlet {
 //                    return;
 //            }
 //        }
-
         if (action.startsWith("/api/socio")) {
             CSocio socio = new CSocio();
             switch (action) {
@@ -101,10 +104,10 @@ public class Api extends HttpServlet {
                 case "/api/socio/findAll":
                     socio.apiFindAll(req, resp);
                     return;
-                
+
             }
         }
-        
+
         if (action.startsWith("/api/consumo")) {
             CConsumo consumo = new CConsumo();
             switch (action) {
@@ -117,15 +120,13 @@ public class Api extends HttpServlet {
                 case "/api/consumo/findAll":
                     consumo.apiFindAll(req, resp);
                     return;
-                case "/api/consumo/findCodSocio":
-                    consumo.apiFindCodSocio(req, resp);
-                    return;
+
                 case "/api/consumo/comboSocio":
                     consumo.apiComboSocio(req, resp);
                     return;
             }
         }
-        
+
         if (action.startsWith("/api/factura")) {
             CFactura factura = new CFactura();
             switch (action) {

@@ -32,44 +32,22 @@
 
     <body>
         <!-- importando menu -->
-    <%@include file="../navbar.html"%>
+        <%@include file="../navbar.html"%>
         <h1 class="alert alert-success text-center">BUSCAR CONSUMO</h1>
-        <div class="container mt-4 shadow-lg p-3 mb-5 bg-body rounded">
-            <button id="btnCrear" type="button" class="btn btn-primary" data-bs-toggle="modal">CREAR</button>
-            
-        </div>
-
-
-
-        <div id="modalConsumo" class="modal fade" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-            <div class="modal-dialog">
-                <div class="modal-content">
-                    <div class="modal-header bg-primary text-white">
-                        <h5 class="modal-title" id="exampleModalLabel">CONSUMO</h5>
-                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            <form class="row row-cols-lg-auto g-3 align-items-center">
+                    <div class="col-12">
+                        <button type="submit" class="btn btn-primary">Buscar</button>
                     </div>
-                    <div class="modal-body">
-                        <form>
-                            <div class="mb-3">
-                                <label for="lectura" class="col-form-label">Lectura:</label>
-                                <input id="lectura" type="text" class="form-control" autofocus>
-                            </div>
-                            <div class="mb-3">
-                                <label for="socio" class="col-form-label">Socio:</label>
-                                <select name="socios" id="socios">
-                                    
-                                </select>
-                            </div>
+                    <div class="col-12">
+                        <input id="buscar" type="text" class="form-control" autofocus>
+                    </div>
+            </form>
+        
+        <section>
 
-                    </div>
-                    <div class="modal-footer">
-                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                        <button type="submit" class="btn btn-primary">Guardar</button>
-                    </div>
-                    </form>
-                </div>
-            </div>
-        </div>
+        </section>
+
+
 
         <!-- Option 1: Bootstrap Bundle with Popper -->
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"
@@ -78,7 +56,9 @@
 
         <!-- JavaScript -->
         <script src="https://cdn.jsdelivr.net/npm/alertifyjs@1.13.1/build/alertify.min.js"></script>
-
+        <script >
+            <%@include file="./code.js"%>
+        </script>
     </body>
 
 </html>
